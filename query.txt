@@ -1,0 +1,27 @@
+/*-------------------------*/
+/*      Query qw_barang      */
+/*-------------------------*/
+
+
+SELECT tb_barang .*, nama_kategori,nama_satuan,berat,nama_supplier,DATEDIFF(kadaluarsa, CURDATE()) as sisa_kadaluarsa FROM tb_obat
+INNER JOIN tb_kategori_barang ON tb_kategori_barang.id_kategori = tb_barang.id_kategori
+INNER JOIN tb_satuan_barang ON tb_satuan_barang.id_satuan = tb_barang.id_satuan
+INNER JOIN tb_berat ON tb_berat.id_berat = tb_barang.id_berat
+INNER JOIN tb_supplier ON tb_supplier.id_supplier = tb_barang.id_supplier
+
+/*-------------------------*/
+/* Query qw_penukaran_stok */
+/*-------------------------*/
+
+
+SELECT tb_tukar_stok .*, nama_barang, nama_supplier FROM tb_tukar_stok
+INNER JOIN tb_barang ON tb_barang.kode_barang = tb_tukar_stok.kode_barang
+INNER JOIN tb_supplier ON tb_supplier.id_supplier = tb_tukar_stok.id_supplier
+
+/*-------------------------*/
+/* Query qw_logs */
+/*-------------------------*/
+
+SELECT tb_logs .*, username, nama FROM tb_logs
+INNER JOIN tb_user ON tb_user.id_user = tb_logs.id_user
+

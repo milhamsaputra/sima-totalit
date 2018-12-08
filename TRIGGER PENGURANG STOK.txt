@@ -1,0 +1,7 @@
+CREATE TRIGGER pengurang_stok AFTER INSERT ON tb_cart_transaksi 
+FOR EACH ROW BEGIN
+UPDATE tb_barang SET jumlah_stok = jumlah_stok - NEW.jumlah_barang
+WHERE kode_barang = NEW.kode_barang;
+END$$
+
+Delimiter $
